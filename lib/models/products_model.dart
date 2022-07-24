@@ -5,7 +5,7 @@ class Product {
   late List<ProductModel> _products;
   List<ProductModel> get products => _products;
 
-  Product({required totalSize,required typeId,required offset,required products}){
+  Product({required totalSize, required typeId, required offset,required products}){
     this._totalSize = totalSize;
     this._typeId = typeId;
     this._offset = offset;
@@ -19,21 +19,10 @@ class Product {
     if (json['products'] != null) {
       _products = <ProductModel>[];
       json['products'].forEach((v) {
-        _products.add(ProductModel.fromJson(v));
+        _products.add(new ProductModel.fromJson(v));
       });
     }
   }
-
-  // Map<String, dynamic> toJson() {
-  //   final Map<String, dynamic> data = new Map<String, dynamic>();
-  //   data['total_size'] = this.totalSize;
-  //   data['type_id'] = this.typeId;
-  //   data['offset'] = this.offset;
-  //   if (this.products != null) {
-  //     data['products'] = this.products!.map((v) => v.toJson()).toList();
-  //   }
-  //   return data;
-  // }
 }
 
 class ProductModel {
@@ -72,19 +61,4 @@ class ProductModel {
     updatedAt = json['updated_at'];
     typeId = json['type_id'];
   }
-
-  // Map<String, dynamic> toJson() {
-  //   final Map<String, dynamic> data = new Map<String, dynamic>();
-  //   data['id'] = this.id;
-  //   data['name'] = this.name;
-  //   data['description'] = this.description;
-  //   data['price'] = this.price;
-  //   data['stars'] = this.stars;
-  //   data['img'] = this.img;
-  //   data['location'] = this.location;
-  //   data['created_at'] = this.createdAt;
-  //   data['updated_at'] = this.updatedAt;
-  //   data['type_id'] = this.typeId;
-  //   return data;
-  // }
 }
