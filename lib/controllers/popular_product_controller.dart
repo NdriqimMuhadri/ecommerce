@@ -2,12 +2,11 @@ import 'package:ecommerce/controllers/cart_controller.dart';
 import 'package:ecommerce/data/repository/popular_product_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../models/CartModel.dart';
 import '../models/products_model.dart';
 
 class PopularProductController extends GetxController{
   final PopularProductRepo popularProductRepo;
-
-  //every controller should have it's own repo
 
   PopularProductController({required this.popularProductRepo});
 
@@ -48,6 +47,10 @@ class PopularProductController extends GetxController{
     if((_inCartItems+quantity)<0){
       Get.snackbar('Item count', 'You can\'t reduce more',
       backgroundColor: Colors.white);
+      if(_inCartItems>0){
+        _quantity = - _inCartItems;
+        return _quantity;
+      }
       return 0;
     } else if((_inCartItems+quantity)>20) {
       Get.snackbar('Item count', 'You can\'t add more',
@@ -72,18 +75,21 @@ class PopularProductController extends GetxController{
   }
 
   void addItem(ProductModel product){
-    if(_quantity>0){
+      _cart.addItem(product, _quantity);
       _quantity = 0;
       _inCartItems = _cart.getQuantity(product);
 
-      _cart.addItem(product, _quantity);
       _cart.items.forEach((key, value) {
-        print("The id is"+value.id.toString()+" The quantity is "+value.quantity.toString());
       });
-    }else{
-      Get.snackbar('Item count', 'You should at least add an item in the cart!',
-          backgroundColor: Colors.white);
-    }
+    update();
+  }
+
+  int get totalItems{
+    return _cart.totalItems;
+  }
+
+  List<CartModel> get getItems{
+    return _cart.getItems;
   }
 
 }

@@ -1,7 +1,6 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:ecommerce/controllers/popular_product_controller.dart';
 import 'package:ecommerce/models/products_model.dart';
-import 'package:ecommerce/pages/food/popular_food_detail.dart';
 import 'package:ecommerce/routes/route_helper.dart';
 import 'package:ecommerce/utils/app_constants.dart';
 import 'package:ecommerce/widgets/app_column.dart';
@@ -10,7 +9,6 @@ import 'package:ecommerce/widgets/icon_and_text_widget.dart';
 import 'package:ecommerce/widgets/small_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/simple/get_state.dart';
 import '../../controllers/recommended_product_controller.dart';
 import '../../utils/colors.dart';
 
@@ -40,6 +38,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
   @override
   void dispose() {
     pageController.dispose();
+    super.dispose();
   }
 
   @override
@@ -118,7 +117,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onTap: () {
-                        Get.toNamed(RouteHelper.getRecommendedFood(index));
+                        Get.toNamed(RouteHelper.getRecommendedFood(index,"home"));
                       },
                       child: Container(
                         margin: const EdgeInsets.only(
@@ -235,7 +234,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
         GestureDetector(
           onTap: () {
 
-            Get.toNamed(RouteHelper.getPopularFood(index));
+            Get.toNamed(RouteHelper.getPopularFood(index,"home"));
           } ,
           child: Container(
             height: 220,
