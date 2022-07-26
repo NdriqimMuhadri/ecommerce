@@ -1,8 +1,5 @@
-
 import 'dart:async';
-
 import 'package:ecommerce/routes/route_helper.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../controllers/popular_product_controller.dart';

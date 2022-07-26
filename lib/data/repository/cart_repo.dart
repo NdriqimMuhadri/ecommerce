@@ -15,13 +15,17 @@ class CartRepo extends GetxService{
   void addToCartList(List<CartModel> cartList){
 
     cart = [];
+    var time = DateTime.now().toString();
     // convert objects to string because sharedprefernces only accepts string
     // cartList.forEach((element) {
     //  return cart.add(jsonEncode(element));
     // });
     // or
 
-    cartList.forEach((element) => cart.add(jsonEncode(element)));
+    cartList.forEach((element) {
+      element.time = time;
+      return cart.add(jsonEncode(element));
+    } );
     sharedPreferences.setStringList(AppConstants.CART_LIST, cart);
     // print(sharedPreferences.getStringList(AppConstants.CART_LIST));
     getCartList();
@@ -47,7 +51,7 @@ class CartRepo extends GetxService{
     return cartList;
   }
 
-  List<CartModel> getCartHisotryList(){
+  List<CartModel> getCartHistoryList(){
     if(sharedPreferences.containsKey(AppConstants.CART_HISTORY_LIST)){
       cartHistory = [];
       cartHistory = sharedPreferences.getStringList(AppConstants.CART_HISTORY_LIST)!;
@@ -67,7 +71,7 @@ class CartRepo extends GetxService{
 
     removeCart();
     sharedPreferences.setStringList(AppConstants.CART_HISTORY_LIST, cartHistory);
-    print("length of the history is:"+getCartHisotryList().length.toString());
+    print("length of the history is:"+getCartHistoryList().length.toString());
   }
 
   void removeCart(){

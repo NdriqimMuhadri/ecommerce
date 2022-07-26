@@ -1,9 +1,8 @@
-
+import 'package:ecommerce/pages/cart/cart_history.dart';
 import 'package:ecommerce/pages/home/main_food_page.dart';
 import 'package:ecommerce/utils/colors.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import '../cart/cart_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -23,9 +22,7 @@ class _HomePageState extends State<HomePage> {
     Container(
       child: Center(child: Text("Next page")),
     ),
-    Container(
-      child: Center(child: Text("Next next page")),
-    ),
+    CartHistory(),
     Container(
       child: Center(child: Text("Next next next page")),
     ),
